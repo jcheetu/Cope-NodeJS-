@@ -1,5 +1,8 @@
 module.exports = {
     getUser: function(req, res) {
-       return res.send(UserService.getUser(res));
-    }
-};
+      UserService.getUser(function(error, output) {
+       console.log(output);
+       return res.send(output);
+      });
+    }  
+}
