@@ -12,3 +12,7 @@ db.user.insert(
          address : '' 
      }  
   )
+
+
+  INSERT INTO Client(Name,Country,Email,Domain)
+           VALUES('PayTm','India','paytm@gmail.com','1')

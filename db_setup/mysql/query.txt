@@ -1,0 +1,10 @@
+create Database MyDb
+Use MyDb;
+
+CREATE TABLE Client(
+   ClientId INT AUTO_INCREMENT PRIMARY KEY,
+   Name VARCHAR(40),
+   Country VARCHAR(255),
+   Email VARCHAR(255),
+   Domain int
+);
