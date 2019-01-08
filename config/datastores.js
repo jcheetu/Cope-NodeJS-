@@ -59,7 +59,7 @@ module.exports.datastores = {
   },
   db_mysql: {
     adapter: require('sails-mysql'),
-    url: 'mysql://root:welcome@localhost:3306/MyDb',
+    url: 'mysql://root:welcome@localhost:3306/COPE',
   }
 
 };
