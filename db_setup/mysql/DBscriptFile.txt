@@ -1,0 +1,51 @@
+DROP Database IF EXISTS COPE;
+create Database COPE;
+Use COPE;
+
+DROP TABLE IF EXISTS Client;
+CREATE TABLE Client(
+   ClientId BIGINT AUTO_INCREMENT PRIMARY KEY,
+   MarketName VARCHAR(40),
+   EmailId VARCHAR(255),
+   Phone VARCHAR(255),
+   BussinessCategory VARCHAR(255),
+   Country VARCHAR(255),
+   City VARCHAR(255),
+   OnboardingDate DATE,
+   CreatedOn DATE,
+   UpdatedOn DATE
+);
+
+ALTER TABLE COPE.Client AUTO_INCREMENT=25950893824278580;
+
+
+
+
+DROP TABLE IF EXISTS Plan;
+CREATE TABLE Plan(
+   PlanId BIGINT AUTO_INCREMENT PRIMARY KEY,
+   PlanName VARCHAR(40),
+   Connects INT,
+   Price INT,
+   Currency CHAR(5),
+   PlanLevel VARCHAR(255),
+   CreatedOn DATE,
+   UpdatedOn DATE
+);
+
+
+
+DROP TABLE IF EXISTS ClientPlan;
+CREATE TABLE ClientPlan(
+   Id BIGINT AUTO_INCREMENT PRIMARY KEY,
+   ClientId BIGINT,
+   PlanId INT,
+   LevelState CHAR(2), 
+   Currency CHAR(5),
+   PlanLevel VARCHAR(255),
+   CreatedOn DATE,
+   UpdatedOn DATE
+);
+
+
+

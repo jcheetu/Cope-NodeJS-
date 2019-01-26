@@ -1,0 +1,20 @@
+{
+    "clientID" : "string",
+    "customerSupportId" : "string",
+    "customerSuportName" : "string",
+    "email" : "string",
+    "createdOn" : "Date",
+    "updatedOn" : "Date"
+}
+
+use DB_CHAT
+switched to db DB_CHAT
+db.createCollection('user'), 
+{capped: true}, {
+    "clientID" : "string",
+    "customerSupportId" : "string",
+    "customerSuportName" : "string",
+    "email" : "string",
+    "createdOn" : "Date",
+    "updatedOn" : "Date"
+}

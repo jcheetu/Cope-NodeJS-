@@ -40,7 +40,8 @@ module.exports.routes = {
   ***************************************************************************/
 
  'GET /user': 'UserController.getUser',
- 'GET /client': 'ClientController.getClient'
+ 'GET /client': 'ClientController.getClient',
+ 'POST /customerSupportUser/create': 'CustomerSupportUserController.create'
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗  
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
