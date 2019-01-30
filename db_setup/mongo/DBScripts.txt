@@ -1,15 +1,7 @@
-{
-    "clientID" : "string",
-    "customerSupportId" : "string",
-    "customerSuportName" : "string",
-    "email" : "string",
-    "createdOn" : "Date",
-    "updatedOn" : "Date"
-}
 
-use DB_CHAT
-switched to db DB_CHAT
-db.createCollection('user'), 
+use COPE
+switched to db COPE
+db.createCollection('customerSupportuser'), 
 {capped: true}, {
     "clientID" : "string",
     "customerSupportId" : "string",
@@ -18,3 +10,5 @@ db.createCollection('user'),
     "createdOn" : "Date",
     "updatedOn" : "Date"
 }
+
+db.customerSupportUser.createIndex( { "customerSupportId": 1 }, { unique: true } )

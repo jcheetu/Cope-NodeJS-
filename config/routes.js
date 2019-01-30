@@ -41,7 +41,14 @@ module.exports.routes = {
 
  'GET /user': 'UserController.getUser',
  'GET /client': 'ClientController.getClient',
- 'POST /customerSupportUser/create': 'CustomerSupportUserController.create'
+ 
+ 
+ 'POST /customerSupportUser/create': 'CustomerSupportUserController.create',
+ 'GET /customerSupportUser/:customerSupportId/:clientID': 'CustomerSupportUserController.getUser',
+ 'DELETE /customerSupportUser/delete/:customerSupportId/:clientID': 'CustomerSupportUserController.deleteUser',
+ 'PUT /customerSupportUser/update': 'CustomerSupportUserController.updateUser',
+
+
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗  
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
