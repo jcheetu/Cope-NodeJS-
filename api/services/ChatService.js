@@ -7,10 +7,11 @@ module.exports = {
         var collection = this.db().collection("chat");
         collection.insert(reqData,function(err) {
             if (err) {
-                //errorDb.insert(err);
+                ErrorLoggerService.logError(err);
                 var res = Message.fail;
-                res.reason = JSON.stringify(err);
+                res.reason = err;
                 callback(res);
+
             } else {
                 callback(Message.success);
             }
@@ -23,7 +24,12 @@ module.exports = {
         collection.find({$or : [{ fromId : customerId }, {toId : customerId }], $and : {clientID : clientId}, 
             $orderby: { createdOn : -1 }})
         .toArray(function(err, documents) {
-            if (err) throw err;
+            if (err) {
+                ErrorLoggerService.logError(err);
+                var res = Message.fail;
+                res.reason = err;
+                callback(res);
+            };
             callback(documents);
         });
            

@@ -2,15 +2,13 @@ module.exports = {
     db : function(){
         return sails.getDatastore("db_mongo").manager;
     },
-   // errorDb : this.db().collection("errorLogger"),
     create: function (reqData,callback) {
         var collection = this.db().collection("customerSupportUser");
         collection.insert(reqData,function(err) {
             if (err) {
-                // var errcollection =  errorDb.collection("errorLogger");
-                // errcollection.insert(err);
+                ErrorLoggerService.logError(err);
                 var res = Message.fail;
-                res.reason = JSON.stringify(err);
+                res.reason = err;
                 callback(res);
                 
             } else {
@@ -24,7 +22,12 @@ module.exports = {
    
         collection.find({$and : [{customerSupportId : userId }, {clientID : clientId }]})
         .toArray(function(err, documents) {
-            if (err) throw err;
+            if (err) {
+                ErrorLoggerService.logError(err);
+                var res = Message.fail;
+                res.reason = JSON.stringify(err);
+                callback(res);
+            };
             callback(documents);
         });
            
@@ -34,7 +37,12 @@ module.exports = {
         var collection = this.db().collection("customerSupportUser");
    
          collection.remove({$and : [{customerSupportId : userId }, {clientID : clientId }]},function(err, documents) {
-            if (err) throw err;
+            if (err) {
+                ErrorLoggerService.logError(err);
+                var res = Message.fail;
+                res.reason = JSON.stringify(err);
+                callback(res);
+            }
             else{
                 if(documents.n == 0){
                     callback(Message.success);
@@ -58,7 +66,12 @@ module.exports = {
                 "updatedOn" : reqData.updatedOn
             }
         }, function(err, documents) {
-            if (err) throw err;
+            if (err) {
+                ErrorLoggerService.logError(err);
+                var res = Message.fail;
+                res.reason = JSON.stringify(err);
+                callback(res);
+            }
             if(documents.n != 0){
                 callback(Message.success);
             }

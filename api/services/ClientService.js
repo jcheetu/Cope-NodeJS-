@@ -8,9 +8,12 @@
        
         this.DBStore_MySql().sendNativeQuery(query).exec(function (err, nativeResult) {
             if (err) {
-                callback(null, err);;
+                ErrorLoggerService.logError(err);
+                var res = Message.fail;
+                res.reason = err;
+                callback(res);   
             }
-            callback(null, JSON.stringify(nativeResult.rows));
+            callback(nativeResult.rows);
 
         });
 
