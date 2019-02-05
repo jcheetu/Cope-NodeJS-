@@ -2,17 +2,17 @@ module.exports = {
     db : function(){
         return sails.getDatastore("db_mongo").manager;
     },
-
+   // errorDb : this.db().collection("errorLogger"),
     create: function (reqData,callback) {
         var collection = this.db().collection("customerSupportUser");
         collection.insert(reqData,function(err) {
             if (err) {
-                if(err.code == 11000){
-                    var res = Message.fail;
-                    res.reason = "customerSupportId already exists";
-                    callback(res);
-                }
-                else throw err;
+                // var errcollection =  errorDb.collection("errorLogger");
+                // errcollection.insert(err);
+                var res = Message.fail;
+                res.reason = JSON.stringify(err);
+                callback(res);
+                
             } else {
                 callback(Message.success);
             }
@@ -33,7 +33,7 @@ module.exports = {
      deleteUser: function (userId,clientId,callback) {
         var collection = this.db().collection("customerSupportUser");
    
-        var result = collection.remove({$and : [{customerSupportId : userId }, {clientID : clientId }]},function(err, documents) {
+         collection.remove({$and : [{customerSupportId : userId }, {clientID : clientId }]},function(err, documents) {
             if (err) throw err;
             else{
                 if(documents.n == 0){
@@ -59,7 +59,6 @@ module.exports = {
             }
         }, function(err, documents) {
             if (err) throw err;
-            console.log(documents);
             if(documents.n != 0){
                 callback(Message.success);
             }

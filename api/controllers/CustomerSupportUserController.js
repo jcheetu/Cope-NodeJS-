@@ -1,4 +1,11 @@
 module.exports = {
+
+//   {
+//     "clientID" : "123",
+//     "customerSupportId" : "2",
+//     "customerSuportName" : "VJ2",
+//     "email" : "@"
+// }
   create: function(req, res) {
     
     let data = req.allParams();
@@ -14,7 +21,7 @@ module.exports = {
     let data = req.allParams();
     CustomerSupportUserService.getUser(
       data.customerSupportId,
-      data.clientID,
+      data.clientId,
       function(output) {
         return res.send(output);
       }
@@ -25,12 +32,19 @@ module.exports = {
     let data = req.allParams();
     CustomerSupportUserService.deleteUser(
       data.customerSupportId,
-      data.clientID,
+      data.clientId,
       function(output) {
         return res.send(output);
       }
     );
   },
+
+//   {
+//     "clientID" : "123",
+//     "customerSupportId" : "1",
+//     "customerSuportName" : "VJ3",
+//     "email" : "@@"
+// }
   updateUser: function(req, res) {
     let data = req.allParams();
     data.updatedOn = new Date();

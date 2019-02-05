@@ -48,6 +48,8 @@ module.exports.routes = {
  'DELETE /customerSupportUser/delete/:customerSupportId/:clientID': 'CustomerSupportUserController.deleteUser',
  'PUT /customerSupportUser/update': 'CustomerSupportUserController.updateUser',
 
+ 'POST /chat/create': 'ChatController.create',
+ 'GET /chat/:customerId/:clientID': 'ChatController.getChat',
 
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗  

@@ -11,4 +11,19 @@ db.createCollection('customerSupportuser'),
     "updatedOn" : "Date"
 }
 
-db.customerSupportUser.createIndex( { "customerSupportId": 1 }, { unique: true } )
+db.customerSupportUser.createIndex( { "customerSupportId": 1 }, { unique: true } );
+
+
+db.createCollection('chat'), 
+{capped: true},  {
+        "messageId" : "string",
+         "fromId" : "string",
+         "toId" : "string",
+         "Message" :"string",
+         "socketId" : "string",
+         "fromCustomer" : "char"
+         "createdOn" : "Date"
+     }
+
+db.chat.createIndex( { "messageId": 1 }, { unique: true } );
+
