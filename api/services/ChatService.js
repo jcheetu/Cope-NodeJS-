@@ -1,9 +1,11 @@
+var AIConnectorService =  (require('../chatbotAI/AIConnectorService'));
 module.exports = {
     db : function(){
         return sails.getDatastore("db_mongo").manager;
     },
 
     create: function (reqData,callback) {
+      var reqdata = {text: reqData.message, sessionId : "asdfg-dfgh", AI : "dialogueflow"};
         var collection = this.db().collection("chat");
         collection.insert(reqData,function(err) {
             if (err) {
@@ -13,9 +15,33 @@ module.exports = {
                 callback(res);
 
             } else {
-                callback(Message.success);
+                AIConnectorService.sendRequest(reqdata, function(output) {
+                    var responce = output;
+                    if(responce.status["code"]!=200){
+
+                        ErrorLoggerService.logError(responce);
+                        var res = Message.fail;
+                        res.reason = err;
+                        callback(res);
+                    }
+                    else{
+                        collection.insert(responce,function(err) {
+                            if (err) {
+                                ErrorLoggerService.logError(err);
+                                var res = Message.fail;
+                                res.reason = err;
+                                callback(res);
+                
+                            } else {
+                                callback(responce);
+                            }
+                         });
+                    }
+                });
             }
-         });      
+         });  
+
+       
      },
 
      getChat: function (customerId ,clientId,callback) {
