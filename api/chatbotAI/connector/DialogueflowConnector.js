@@ -4,8 +4,7 @@ module.exports  =   {
 
     sendRequest :  function(reqObj, callback) {
     
-    var app = apiai(sails.config.ai.dialogueflow.accessToken);
-    
+    var app = apiai((reqObj.accessToken == undefined || reqObj.accessToken == null)? (sails.config.ai.dialogueflow.accessToken) : reqObj.accessToken);
     // var request = app.textRequest("<Your text query>", {
     //   sessionId: "<unique session id>"
     // });

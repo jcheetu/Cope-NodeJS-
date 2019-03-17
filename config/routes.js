@@ -51,6 +51,7 @@ module.exports.routes = {
  'POST /chat/create': 'ChatController.create',
  'GET /chat/:customerId/:clientID': 'ChatController.getChat',
 
+ 'POST /AI/sendrequest': 'AIController.sendRequest',
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗  
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
