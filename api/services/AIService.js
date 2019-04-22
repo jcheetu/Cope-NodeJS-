@@ -4,7 +4,7 @@ module.exports = {
     sendRequest: function(reqData, callback) {
     var reqdata = {
       text: reqData.text,
-      sessionId: reqData.sessionId,
+      sessionId:  reqData.sessionId,
       AI: reqData.ai,
       accessToken : reqData.accessToken
     };

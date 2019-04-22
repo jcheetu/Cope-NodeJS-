@@ -52,6 +52,8 @@ module.exports.routes = {
  'GET /chat/:customerId/:clientID': 'ChatController.getChat',
 
  'POST /AI/sendrequest': 'AIController.sendRequest',
+ 'GET /loadbot/:ai/:accessToken/:title': 'AIController.loadBot',
+ 
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗  
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝

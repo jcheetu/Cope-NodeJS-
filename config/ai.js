@@ -11,7 +11,7 @@ module.exports.ai = {
     // …
     
     
-    name : "dialogueflow",
+    DIALOGUEFLOW : "dialogueflow",
     dialogueflow : {
         baseUrl : "",
         accessToken: "589dec4a74584741938ec4e4bfc41f8e"
