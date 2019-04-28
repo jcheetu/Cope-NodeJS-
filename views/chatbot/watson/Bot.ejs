@@ -10,6 +10,9 @@
     <input type="hidden" value="<%= accessToken %>" id="hidden_accessToken"/>
     <input type="hidden" value="<%= title %>" id="hidden_title"/>
     <input type="hidden" value="<%= ai %>" id="hidden_ai"/>
+
+    <input type="hidden" value="<%= username %>" id="hidden_username"/>
+    <input type="hidden" value="<%= password %>" id="hidden_password"/>
   </body>
 </html>
 
@@ -53,7 +56,9 @@ $(document).ready(function(){
             // ai : "dialogueflow"
             accessToken :  $("#hidden_accessToken").val() , //"eec1d68cdfa148edb700e7bbfc58b6c0",
             chatbotTitle :  $("#hidden_title").val().replace("-"," "),
-            ai :  $("#hidden_ai").val()
+            ai :  $("#hidden_ai").val(),
+            username : $("#hidden_username").val(),
+            password : $("#hidden_password").val()
                  
     }); 
 })

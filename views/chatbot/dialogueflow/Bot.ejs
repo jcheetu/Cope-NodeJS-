@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <div id="generic-chat-container">
+
+    </div>
+    <input type="hidden" value="<%= accessToken %>" id="hidden_accessToken"/>
+    <input type="hidden" value="<%= title %>" id="hidden_title"/>
+    <input type="hidden" value="<%= ai %>" id="hidden_ai"/>
+  </body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+<script
+  type="text/javascript"
+  src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"
+></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/style_chat.css" />
+
+<link rel="stylesheet" href="/css/bot.css" />
+<script type="text/javascript" src="/js/cope_Dialogueflow/chat.js"></script>
+    <link rel= "stylesheet" src="/css/chat.css"></link>
+
+    <script type="text/javascript"> 
+    function getQueryString() {
+                var queryStringKeyValue = "";
+                try{
+                    queryStringKeyValue = document.getElementById('chatbot_frame').src;
+                }
+                catch(er){
+                    queryStringKeyValue = window.parent.location.search.replace('?', '').split('&');
+                   
+
+                }var qsJsonObject = {};
+                if (queryStringKeyValue != '') {
+                    for (i = 0; i < queryStringKeyValue.length; i++) {
+                        qsJsonObject[queryStringKeyValue[i].split('=')[0]] = queryStringKeyValue[i].split('=')[1];
+                    }
+                }
+                return qsJsonObject;
+            }
+$(document).ready(function(){
+    $( "#generic-chat-container" ).chat({
+            // accessToken : getQueryString().clientid, //"eec1d68cdfa148edb700e7bbfc58b6c0",
+            // chatbotTitle : getQueryString().chatbotTitle,
+            // ai : "dialogueflow"
+            accessToken :  $("#hidden_accessToken").val() , //"eec1d68cdfa148edb700e7bbfc58b6c0",
+            chatbotTitle :  $("#hidden_title").val().replace("-"," "),
+            ai :  $("#hidden_ai").val()
+                 
+    }); 
+})
+    </script>
