@@ -31,9 +31,7 @@ module.exports  =   {
     // var request = app.textRequest("<Your text query>", {
     //    sessionId: "<unique session id>"
     // });
-    console.log(app);
-    console.log("Jy");
-    console.log(reqObj);
+    
      var request = app.textRequest(reqObj.text, {
         sessionId: reqObj.sessionId
       });

@@ -15,7 +15,7 @@
 
 var JavaScriptCode = document.createElement("script");
 JavaScriptCode.setAttribute('type', 'text/javascript');
-JavaScriptCode.setAttribute("src", 'http://localhost:1338/js/allchat.js');
+JavaScriptCode.setAttribute("src", 'http://localhost:1338/js/copeWidget_DialogueFlow/allchat.js');
 
 document.getElementById('generic-chat-container').appendChild(JavaScriptCode);
 

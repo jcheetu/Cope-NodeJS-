@@ -1,11 +1,18 @@
 var DialogueflowConnector = require('./connector/DialogueflowConnector');
+var IBMWatsonConnector = require('./connector/IBMWatsonConnector')
   
 module.exports  =   {
 
     sendRequest :  function(reqObj, callback) {
-    if(reqObj.AI == (sails.config.ai.DIALOGUEFLOW))
+    if(reqObj.ai.toUpperCase() == (sails.config.ai.DIALOGUEFLOW))
     { 
           DialogueflowConnector.sendRequest(reqObj, function(output) {
+            callback(output);
+        });
+    }
+    if(reqObj.ai.toUpperCase() == (sails.config.ai.WATSON))
+    { 
+          IBMWatsonConnector.sendRequest(reqObj, function(output) {
             callback(output);
         });
     }

@@ -11,10 +11,11 @@ module.exports.ai = {
     // …
     
     
-    DIALOGUEFLOW : "dialogueflow",
+    DIALOGUEFLOW : "DIALOGUEFLOW",
     dialogueflow : {
         baseUrl : "",
         accessToken: "589dec4a74584741938ec4e4bfc41f8e"
-    }
-
+    },
+    WATSON : "WATSON"
+    
   };

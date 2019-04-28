@@ -151,7 +151,7 @@
 			"accessToken" : settings.accessToken,
         	"ai" : settings.ai,
 		};
-		
+
 		$.ajax({
 			type: "POST",
 			url: "/AI/sendrequest",
