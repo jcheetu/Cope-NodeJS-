@@ -48,8 +48,16 @@ module.exports.routes = {
   "POST /chat/create": "ChatController.create",
   "GET /chat/:customerId/:clientID": "ChatController.getChat",
 
-  "POST /AI/sendrequest": "AIController.sendRequest",
-
+  "POST /AI/sendrequest":  { 
+  //  "AIController/sendRequest"
+    action :"sendRequest",
+    controller : 'AIController',
+    cors: {
+      allowOrigins: '*',
+      allowRequestMethods : 'GET, POST, PUT, DELETE, OPTIONS, HEAD',
+      allowRequestHeaders : 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    }
+  },
   // Different AI Bots
 
   "GET /loadbot/:ai/:accessToken/:username/:password/:title": "AIController.loadWatsonBot",

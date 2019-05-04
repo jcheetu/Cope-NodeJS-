@@ -6,7 +6,6 @@ module.exports = {
     //      ai : "",
     // }
     sendRequest: function(req, res) {
-      console.log(req);
       let data = req.allParams();
       AIService.sendRequest(data, function(output) {
         return res.send(output);

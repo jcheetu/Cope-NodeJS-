@@ -165,19 +165,22 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
 			mysession=session(true);
 		}
 		var data = {
-			"query": text,
-			"lang": "en",
-			"sessionId": mysession
+			"text": text,
+			"sessionId": mysession,
+			"accessToken" : settings.accessToken,
+        	"ai" : settings.ai,
 		};
+		
 		$.ajax({
 			type: "POST",
-			url: settings.baseUrl,
+			url: "http://localhost:1337/AI/sendrequest",
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
 			headers: {
 				"Authorization": "Bearer " + settings.accessToken
 			},
+			
 			// data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
 			success: function(data) {
                                 //console.log("data");
