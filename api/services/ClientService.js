@@ -8,7 +8,7 @@
        
         this.DBStore_MySql().sendNativeQuery(query).exec(function (err, nativeResult) {
             if (err) {
-                ErrorLoggerService.logError(err);
+                LoggerService.logError(err);
                 var res = Message.fail;
                 res.reason = err;
                 callback(res);   

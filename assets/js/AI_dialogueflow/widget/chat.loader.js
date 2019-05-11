@@ -36,6 +36,7 @@ window.onload = function() {
     $( "#generic-chat-container" ).chat({
         accessToken : document.getElementById('generic-chat-container').getAttribute("access-token"), //"eec1d68cdfa148edb700e7bbfc58b6c0",
         chatbotTitle : document.getElementById('generic-chat-container').getAttribute("chatbot-title"),
+        initialMessage :  document.getElementById('generic-chat-container').getAttribute("initial-message") == (null) || (document.getElementById('generic-chat-container').getAttribute("initial-message") == "" )  ? "Hi" : document.getElementById('generic-chat-container').getAttribute("initial-message") ,
         ai : 'DIALOGUEFLOW'//document.getElementById('generic-chat-container').getAttribute("chatbot-ai")
     }); 
 };

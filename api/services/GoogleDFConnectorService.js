@@ -20,7 +20,7 @@ module.exports = {
     AIConnectorService.sendRequest(reqdata, function(output) {
       var responce = output
       if (responce.status["code"] != 200) {
-        ErrorLoggerService.logError(responce);
+        LoggerService.logError(responce);
         var res = Message.fail;
         res.reason = err;
         callback(res);

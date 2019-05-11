@@ -47,5 +47,36 @@ CREATE TABLE ClientPlan(
    UpdatedOn DATE
 );
 
+DROP TABLE IF EXISTS AI;
+CREATE TABLE AI(
+   AIID BIGINT AUTO_INCREMENT PRIMARY KEY,
+   AIName varchar(255),
+   AI CHAR(5)
+  );
+DROP TABLE IF EXISTS ClientToken;
+CREATE TABLE ClientToken(
+   TokenID BIGINT AUTO_INCREMENT PRIMARY KEY,
+   ClientID BIGINT,
+   AI CHAR(5),
+   accessToken VARCHAR(255),
+   COPEToken VARCHAR(255),
+   UserName VARCHAR(255),
+   Password VARCHAR(255),
+   CreatedOn DATE,
+   UpdatedOn DATE
+);
 
+DROP TABLE IF EXISTS Currency
 
+CREATE TABLE Currency(
+   CurrencyID BIGINT AUTO_INCREMENT PRIMARY KEY,
+   Currency Varchar(255),
+   CurrencyCode CHAR(5)
+);
+
+DROP TABLE IF EXISTS Logger
+CREATE TABLE Logger(
+   LogID BIGINT AUTO_INCREMENT PRIMARY KEY,
+   Request Varchar(255),
+   LogType CHAR(5)
+);

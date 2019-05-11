@@ -26,50 +26,51 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
             // These are the defaults.
             baseUrl : "",
             accessToken : "",
-            chatbotTitle : ""
+			chatbotTitle : "",
+			initialMessage : ""
         }, options );
         
-	
-        var chat_container = '<div class="cd-cart-container empty" ><a href="#0" class="cd-cart-trigger" style="z-index: 999;position: fixed;"></a>'
-        + '<div class="cd-cart" style="z-index: 999">'
-          +  '<div class="wrapper">'
+    
+        var chat_container = '<div class="main-chat-container empty" ><a href="#0" class="chat-button" style="z-index: 999;position: fixed;"></a>'
+        + '<div class="chat-box" style="z-index: 999">'
+          +  '<div class="chat-window">'
            + '<header style="box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.15);background: #1F8CEB;">'
                       +' <div style="color: #fff;font-size: 17px;line-height: 1.1em;'
                          +  'white-space: nowrap;text-align: center;margin: 9.5px auto;overflow: hidden;text-overflow: ellipsis;">'+ settings.chatbotTitle +'</div>'
                +' </header>'
                 + '<div class="body container">'
-                      + '<mybot></mybot>'
+                      + '<copebot></copebot>'
                      
                   + '</div>'
-                  + '<footer id="chatHide">'
+                  + '<footer>'
                    + '<input  type="text" id="chat-input" autocomplete="off" placeholder="Try typing here..." class="bot-form-control bot-txt"/>'
                + '</footer>'
             + '</div>'
             + '</div>'
         + '</div>';
         $(this).html(chat_container);
-        var mybot = '<div class="chatCont" id="chatCont">'+
-						'<!--chatCont end-->';
+        var copebot = '<div class="chat-div" id="chat-div">'+
+						'<!--chat-div end-->';
 
-			mybot+='<div id="result_div" class="resultDiv"></div>'+
-			'<div class="chatForm" id="chat-div">'+
-				'<div class="spinner">'+
-					'<div class="bounce1"></div>'+
-					'<div class="bounce2"></div>'+
-					'<div class="bounce1"></div>'+
+			copebot+='<div id="response-container" class="resultDiv"></div>'+
+			'<div class="loader-div" id="chat-div">'+
+				'<div class="loader">'+
+					'<div class="dot1"></div>'+
+					'<div class="dot2"></div>'+
+					'<div class="dot1"></div>'+
 				'</div>'+
 			'</div>'+
         '</div>';
         
-        $("mybot").html(mybot);
+        $("copebot").html(copebot);
         
-        var cartWrapper = $('.cd-cart-container');
+        var cartWrapper = $('.main-chat-container');
 
         if( cartWrapper.length > 0 ) {
             var cartBody = cartWrapper.find('.body')
             var cartList = cartBody.find('ul').eq(0);
             var cartTotal = cartWrapper.find('.checkout').find('span');
-            var cartTrigger = cartWrapper.children('.cd-cart-trigger');
+            var cartTrigger = cartWrapper.children('.chat-button');
           
                   //event.preventDefault();
             addToCart($(this));
@@ -77,7 +78,7 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
    
            //open/close cart
            cartTrigger.on('click', function(event){
-               $('#result_div').empty();
+               $('#response-container').empty();
                toggleCart();
            });
    
@@ -91,18 +92,19 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
         }
         
         function toggleCart(bool) {
-            var cartIsOpen = ( typeof bool === 'undefined' ) ? cartWrapper.hasClass('cart-open') : bool;
+            var cartIsOpen = ( typeof bool === 'undefined' ) ? cartWrapper.hasClass('chat-open') : bool;
             if( cartIsOpen ) {
-                 cartWrapper.removeClass('cart-open');
+                 cartWrapper.removeClass('chat-open');
                  $('#chatbot_frame').height("65px"); 
-                 $(".cd-cart").hide();
+                 $(".chat-box").hide();
             
                 } else {
                     $('#chatbot_frame').height("500px"); 
-                    $(".cd-cart").css("margin-bottom", "70px").fadeIn("slow");
-                    cartWrapper.addClass('cart-open');
-                                    send("Hi");
-                 }
+                    $(".chat-box").css("margin-bottom", "70px").fadeIn("slow");
+					cartWrapper.addClass('chat-open');
+					mysession=session(true);
+	
+send(settings.initialMessage)                 }
         }
 
         var session = function(param) {
@@ -160,41 +162,42 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
 
 	//------------------------------------------- Send request to API.AI ---------------------------------------
 	function send(text) {
-			//console.log(baseUrl);
-		if(text=='Hi'){
-			mysession=session(true);
-		}
-		var data = {
-			"text": text,
-			"sessionId": mysession,
-			"accessToken" : settings.accessToken,
-        	"ai" : settings.ai,
-		};
+		//console.log(baseUrl);
+	// if(text=='Hi'){
+	// 	mysession=session(true);
+	// }
+	var data = {
+		"text": text,
+		"sessionId": mysession,
+		"accessToken" : settings.accessToken,
+		"ai" : settings.ai,
+	};
+	
+	$.ajax({
+		type: "POST",
+		url: "http://localhost:1337/AI/sendrequest",
+		data: JSON.stringify(data),
+		contentType: "application/json; charset=utf-8",
+		dataType: "json",
+		headers: {
+			"Authorization": "Bearer " + settings.accessToken
+		},
 		
-		$.ajax({
-			type: "POST",
-			url: "http://localhost:1337/AI/sendrequest",
-			data: JSON.stringify(data),
-			contentType: "application/json; charset=utf-8",
-			dataType: "json",
-			headers: {
-				"Authorization": "Bearer " + settings.accessToken
-			},
-			
-			// data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
-			success: function(data) {
-                                //console.log("data");
-								//console.log("results test");
-								$("#chat-input").prop('disabled', false);
-								               
-				main(data);
-				//console.log(data);				
-			},
-			error: function(e) {
-				//console.log (e);
-			}
-		});
-    }
+		// data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
+		success: function(data) {
+							//console.log("data");
+							//console.log("results test");
+							$("#chat-input").prop('disabled', false);
+										   
+			main(data);
+			//console.log(data);				
+		},
+		error: function(e) {
+			//console.log (e);
+		}
+	});
+}
+
     function main(data) {
 		var action = data.result.action;
 		//console.log(data);
@@ -224,22 +227,25 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
 					setBotResponse(data.result.fulfillment.speech);
 				}
 			}
+			if(action == 'verify_user_demo' && messagesJson.length == 0 && messagesData.fb.title!=undefined){
+								 send(messagesData.fb.title);
+			}
 		}
     }
     
-    //------------------------------------ Set bot response in result_div -------------------------------------
+    //------------------------------------ Set bot response in response-container -------------------------------------
     function setBotResponse(val, time) {
              
 		setTimeout(function(){
 			showSpinner();
 			if($.trim(val) == '') {
 				val = 'I couldn\'t get that. Let\' try something else!'
-				var BotResponse = '<p class="botResult">'+val+'</p><div class="clearfix"></div>';
-				$(BotResponse).appendTo('#result_div');
+				var BotResponse = '<p class="response-text">'+val+'</p><div class="clearfix"></div>';
+				$(BotResponse).appendTo('#response-container');
 			} else {
 				val = val.replace(new RegExp('\r?\n','g'), '<br />');
-				var BotResponse = '<p class="botResult">'+val+'</p><div class="clearfix"></div>';
-				$(BotResponse).appendTo('#result_div');
+				var BotResponse = '<p class="response-text">'+val+'</p><div class="clearfix"></div>';
+				$(BotResponse).appendTo('#response-container');
 			}
 			scrollToBottomOfResults();
 			hideSpinner();
@@ -250,37 +256,37 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
     function addImage(url, time) {
 		setTimeout(function(){
 			showSpinner();
-			$('<p class="botResult"><img src='+url+' width = 50 height = 50></p><div class="clearfix"></div>').appendTo('#result_div');
+			$('<p class="response-text"><img src='+url+' width = 50 height = 50></p><div class="clearfix"></div>').appendTo('#response-container');
 			scrollToBottomOfResults();
 			hideSpinner();
 		}, time);
 	}
 
 
-	//------------------------------------- Set user response in result_div ------------------------------------
+	//------------------------------------- Set user response in response-container ------------------------------------
 	function setUserResponse(val) {
 		var UserResponse = '<p class="userEnteredText">'+val+'</p><div class="clearfix"></div>';
-		$(UserResponse).appendTo('#result_div');
+		$(UserResponse).appendTo('#response-container');
 		$("#chat-input").val('');
 		scrollToBottomOfResults();
 		showSpinner();
-		//$('.suggestion').remove();
+		//$('.responseOption').remove();
 	}
 
 
 	//---------------------------------- Scroll to the bottom of the results div -------------------------------
 	function scrollToBottomOfResults() {
-		var terminalResultsDiv = document.getElementById('chatCont');
+		var terminalResultsDiv = document.getElementById('chat-div');
 		terminalResultsDiv.scrollTop = terminalResultsDiv.scrollHeight;
 	}
 
 
 	//---------------------------------------- Ascii Spinner ---------------------------------------------------
 	function showSpinner() {
-		$('.spinner').show();
+		$('.loader').show();
 	}
 	function hideSpinner() {
-		$('.spinner').hide();
+		$('.loader').hide();
 	}
 
 
@@ -290,15 +296,15 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
 			showSpinner();
 			time = Math.ceil(Math.random()*10000000);
 			var title = textToAdd.title;
-			var suggestions = textToAdd.replies;
+			var responseOptions = textToAdd.replies;
 			var suggLength = textToAdd.replies.length;
                        // console.log("addSuggestion");
                         //console.log(title);
-			$('<p class="suggestion suggest_'+time+'"></p><div class="clearfix"></div>').appendTo('#result_div');
-			$('<div class="sugg-title">'+title+'</div>').appendTo('.suggest_'+time);
-			// Loop through suggestions
+			$('<p class="responseOption response-opt_'+time+'"></p><div class="clearfix"></div>').appendTo('#response-container');
+			$('<div class="option-title">'+title+'</div>').appendTo('.response-opt_'+time);
+			// Loop through responseOptions
 			for(i=0;i<suggLength;i++) {
-				$('<span class="sugg-options">'+suggestions[i]+'</span>').appendTo('.suggest_'+time);
+				$('<span class="option-val">'+responseOptions[i]+'</span>').appendTo('.response-opt_'+time);
 			}
 			scrollToBottomOfResults();
 			$("#chat-input").prop('disabled', true);
@@ -307,12 +313,12 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
                 $("#chat-input").attr('readonly', true);
 	}
 
-	// on click of suggestions get value and send to API.AI
-	$(document).on("click", ".suggestion span", function() {
+	// on click of responseOptions get value and send to API.AI
+	$(document).on("click", ".responseOption span", function() {
 		var text = this.innerText;
 		setUserResponse(text);
 		send(text);
-		// $('.suggestion').remove();
+		// $('.responseOption').remove();
 	});
 	// Suggestions end -----------------------------------------------------------------------------------------
 function runScript(e) {

@@ -5,5 +5,9 @@ module.exports = {
     logError: async function (reqData,callback) {
         var collection = this.db().collection("errorLogger");
         collection.insert(reqData);    
+     },
+     logActivity: async function (reqData) {
+        var collection = this.db().collection("activityLogger");
+        collection.insert(reqData);    
      }
 }

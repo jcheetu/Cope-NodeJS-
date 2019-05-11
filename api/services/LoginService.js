@@ -7,12 +7,12 @@ module.exports = {
     collection.find({$and : [{email : emailId }, {password : password },{clientID : clientId}]})
         .toArray(function(err, documents) {
             if (err) {
-                ErrorLoggerService.logError(err);
+                LoggerService.logError(err);
                 var res = Message.fail;
                 res.reason = JSON.stringify(err);
                 callback(res);
             };
-            ErrorLoggerService.logError(err);
+            LoggerService.logError(err);
                 var res = Message.success;
                 res.reason = "User Authenticated";
                 callback(res);

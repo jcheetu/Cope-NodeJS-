@@ -9,7 +9,7 @@ module.exports = {
         var collection = this.db().collection("chat");
         collection.insert(reqData,function(err) {
             if (err) {
-                ErrorLoggerService.logError(err);
+                LoggerService.logError(err);
                 var res = Message.fail;
                 res.reason = err;
                 callback(res);
@@ -19,7 +19,7 @@ module.exports = {
                     var responce = output;
                     if(responce.status["code"]!=200){
 
-                        ErrorLoggerService.logError(responce);
+                        LoggerService.logError(responce);
                         var res = Message.fail;
                         res.reason = err;
                         callback(res);
@@ -27,7 +27,7 @@ module.exports = {
                     else{
                         collection.insert(responce,function(err) {
                             if (err) {
-                                ErrorLoggerService.logError(err);
+                                LoggerService.logError(err);
                                 var res = Message.fail;
                                 res.reason = err;
                                 callback(res);
@@ -51,7 +51,7 @@ module.exports = {
             $orderby: { createdOn : -1 }})
         .toArray(function(err, documents) {
             if (err) {
-                ErrorLoggerService.logError(err);
+                LoggerService.logError(err);
                 var res = Message.fail;
                 res.reason = err;
                 callback(res);

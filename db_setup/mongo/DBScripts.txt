@@ -27,3 +27,5 @@ db.createCollection('chat'),
 
 db.chat.createIndex( { "messageId": 1 }, { unique: true } );
 
+
+db.createCollection('activityLogger') 

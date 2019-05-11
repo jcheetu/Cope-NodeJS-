@@ -6,7 +6,7 @@ module.exports = {
         var collection = this.db().collection("customerSupportUser");
         collection.insert(reqData,function(err) {
             if (err) {
-                ErrorLoggerService.logError(err);
+                LoggerService.logError(err);
                 var res = Message.fail;
                 res.reason = err;
                 callback(res);
@@ -23,7 +23,7 @@ module.exports = {
         collection.find({$and : [{customerSupportId : userId }, {clientID : clientId }]})
         .toArray(function(err, documents) {
             if (err) {
-                ErrorLoggerService.logError(err);
+                LoggerService.logError(err);
                 var res = Message.fail;
                 res.reason = JSON.stringify(err);
                 callback(res);
@@ -38,7 +38,7 @@ module.exports = {
    
          collection.remove({$and : [{customerSupportId : userId }, {clientID : clientId }]},function(err, documents) {
             if (err) {
-                ErrorLoggerService.logError(err);
+                LoggerService.logError(err);
                 var res = Message.fail;
                 res.reason = JSON.stringify(err);
                 callback(res);
@@ -67,7 +67,7 @@ module.exports = {
             }
         }, function(err, documents) {
             if (err) {
-                ErrorLoggerService.logError(err);
+                LoggerService.logError(err);
                 var res = Message.fail;
                 res.reason = JSON.stringify(err);
                 callback(res);
