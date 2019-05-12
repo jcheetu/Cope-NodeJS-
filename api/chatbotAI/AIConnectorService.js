@@ -45,7 +45,7 @@ module.exports  =   {
         var retrievedSession = session_id;
     }
     return retrievedSession;
-    // console.log('session: ', retrievedSession);
+   
 }
 };
 

@@ -15,7 +15,7 @@
 
 var JavaScriptCode = document.createElement("script");
 JavaScriptCode.setAttribute('type', 'text/javascript');
-JavaScriptCode.setAttribute("src", 'http://localhost:1337/js/AI_dialogueflow/widget/allchat.js');
+JavaScriptCode.setAttribute("src", 'http://localhost:1337/js/AI/dialogueflow/widget/allchat.js');
 
 document.getElementById('generic-chat-container').appendChild(JavaScriptCode);
 

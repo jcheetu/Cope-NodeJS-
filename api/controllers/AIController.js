@@ -13,7 +13,6 @@ module.exports = {
       });
     },
     loadDialogueflowBot: function(req, res) {
-      console.log(req);
       let data = {};
       data.ai = req.params.ai;
       data.accessToken = req.params.accessToken;

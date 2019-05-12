@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>COPE</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-841909579965292931</string>
+			<key>name</key>
+			<string>Local</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>latin1</string>
+			<key>contentFilter</key>
+			<dict/>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGOTpYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoK0HCBUWFxgZHSQoLDE2VSRudWxs0wkK
+			CwwQFFdOUy5rZXlzWk5TLm9iamVjdHNWJGNsYXNzow0OD4ACgAOA
+			BKMREhOABYAGgAiADFR0eXBlVHJvd3NUa2V5c18QJlNlbGVjdGlv
+			bkRldGFpbFR5cGVQcmltYXJ5S2V5ZWREZXRhaWxz0wkKCxobHKCg
+			gAfSHh8gIVokY2xhc3NuYW1lWCRjbGFzc2VzXxATTlNNdXRhYmxl
+			RGljdGlvbmFyeaMgIiNcTlNEaWN0aW9uYXJ5WE5TT2JqZWN00goL
+			JSehJoAJgAvSCykqK1lOUy5zdHJpbmeAClVMb2dJRNIeHy0uXxAP
+			TlNNdXRhYmxlU3RyaW5noy0vMFhOU1N0cmluZ1hOU09iamVjdNIe
+			HzIzXk5TTXV0YWJsZUFycmF5ozI0NVdOU0FycmF5WE5TT2JqZWN0
+			0h4fIjeiIjhYTlNPYmplY3RfEA9OU0tleWVkQXJjaGl2ZXLROzxU
+			ZGF0YYABAAgAEQAaACMALQAyADcARQBLAFIAWgBlAGwAcAByAHQA
+			dgB6AHwAfgCAAIIAhwCMAJEAugDBAMIAwwDFAMoA1QDeAPQA+AEF
+			AQ4BEwEVARcBGQEeASgBKgEwATUBRwFLAVQBXQFiAXEBdQF9AYYB
+			iwGOAZcBqQGsAbEAAAAAAAACAQAAAAAAAAA9AAAAAAAAAAAAAAAA
+			AAABsw==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1017, 473}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>DROP PROCEDURE RegisterClient
+DELIMITER $$
+
+CREATE PROCEDURE RegisterClient(`name` varchar(255), `emailId` VARCHAR(255),AI CHAR(5), `accessToken` char(255), `username` Varchar(255), `password` varchar(255))
+
+BEGIN
+-- select emailId;
+If (select COUNT(*) from Client where Client.EmailId = emailId) &lt;=0 THEN
+		
+		If (select COUNT(*) from ClientToken where ClientToken.AccessToken = accessToken)&lt;=0 THEN
+				
+						INSERT into Client(MarketName, EmailId) values (name,emailId);
+						INSERT into ClientToken(ClientID,AI, AccessToken, COPEToken , Username , Password)
+						values (Last_Insert_ID(),AI, accessToken, UUID() , username , password);
+
+						Select COPEToken as 'COPEToken' from ClientToken where ClientToken.AccessToken = accessToken;
+
+			
+				ELSE
+				
+						SELECT Error, `Code` from ErrorCode where Code = 1002;
+				END IF;
+
+   			
+ELSE
+
+			SELECT Error, `Code` from ErrorCode where Code = 1001;
+END IF;
+
+
+END $$
+ 
+Truncate Client;
+
+Truncate ClientToken
+call RegisterClient('mu','mu@mu.com','DF', 'eec1d68cdfa148edb700e7bbfc58b6c0x','','')
+</string>
+			<key>table</key>
+			<string>Logger</string>
+			<key>view</key>
+			<string>SP_VIEW_STRUCTURE</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>200</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>call RegisterClient('mu','mu@mu.com','DF', 'eec1d68cdfa148edb700e7bbfc58b6c0x','','')</string>
+		<string>Truncate Client;
+Truncate ClientToken</string>
+		<string>CREATE PROCEDURE RegisterClient(`name` varchar(255), `emailId` VARCHAR(255),AI CHAR(5), `accessToken` char(255), `username` Varchar(255), `password` varchar(255))
+
+BEGIN
+-- select emailId;
+If (select COUNT(*) from Client where Client.EmailId = emailId) &lt;=0 THEN
+		
+		If (select COUNT(*) from ClientToken where ClientToken.AccessToken = accessToken)&lt;=0 THEN
+				
+						INSERT into Client(MarketName, EmailId) values (name,emailId);
+						INSERT into ClientToken(ClientID,AI, AccessToken, COPEToken , Username , Password)
+						values (Last_Insert_ID(),AI, accessToken, UUID() , username , password);
+
+						Select COPEToken as 'COPEToken' from ClientToken where ClientToken.AccessToken = accessToken;
+
+			
+				ELSE
+				
+						SELECT Error, `Code` from ErrorCode where Code = 1002;
+				END IF;
+
+   			
+ELSE
+
+			SELECT Error, `Code` from ErrorCode where Code = 1001;
+END IF;
+
+
+END</string>
+		<string>DROP PROCEDURE RegisterClient</string>
+		<string>CREATE PROCEDURE RegisterClient(`name` varchar(255), `emailId` VARCHAR(255),AI CHAR(5), `accessToken` char(255), `username` Varchar(255), `password` varchar(255))
+
+BEGIN
+-- select emailId;
+If (select COUNT(*) from Client where Client.EmailId = emailId) &lt;=0 THEN
+		
+		If (select COUNT(*) from ClientToken where ClientToken.AccessToken = accessToken)&lt;=0 THEN
+				
+						INSERT into Client(MarketName, EmailId) values (name,emailId);
+						INSERT into ClientToken(ClientID,AI, AccessToken, COPEToken , Username , Password)
+						values (Last_Insert_ID(),AI, accessToken, UUID() , username , password);
+
+						Select COPEToken from ClientToken where ClientToken.AccessToken = accessToken;
+
+			
+				ELSE
+				
+						SELECT Error, `Code` from ErrorCode where Code = 1002;
+				END IF;
+
+   			
+ELSE
+
+			SELECT Error, `Code` from ErrorCode where Code = 1001;
+END IF;
+
+
+END</string>
+		<string>Truncate Client;
+Truncate ClientToken
+call RegisterClient('mu','mu@mu.com','DF', 'eec1d68cdfa148edb700e7bbfc58b6c0x','','')</string>
+		<string>CREATE PROCEDURE RegisterClient(`name` varchar(255), `emailId` VARCHAR(255),AI CHAR(5), `accessToken` char(255), `username` Varchar(255), `password` varchar(255))
+
+BEGIN
+-- select emailId;
+If (select COUNT(*) from Client where Client.EmailId = emailId) &lt;=0 THEN
+		
+		If (select COUNT(*) from ClientToken where ClientToken.AccessToken = accessToken)&lt;=0 THEN
+				
+						INSERT into Client(MarketName, EmailId) values (name,emailId)</string>
+		<string>call RegisterClient('mu','mu@mu.com','DF', 'eec1d68cdfa148edb700e7bbfc58b6cx','','')</string>
+		<string>call RegisterClient('mu','mu1@mu.com','DF', 'eec1d68cdfa148edb700e7bbfc58b6c0x','','')</string>
+		<string>call RegisterClient('mu','mu1@mu.com','DF', 'eec1d68cdfa148edb700e7bbfc58b6c0s','','')</string>
+		<string>call RegisterClient('mu','mu1@mu.com','DF', 'eec1d68cdfa148edb700e7bbfc58b6c0z','','')</string>
+		<string>call RegisterClient('mu','mu1@mu.com','DF', 'eec1d68cdfa148edb700e7bbfc58b6c0','','')</string>
+		<string>CREATE PROCEDURE RegisterClient(`name` varchar(255), `emailId` VARCHAR(255),AI CHAR(5), `accessToken` char(255), `username` Varchar(255), `password` varchar(255))
+
+BEGIN
+-- select emailId;
+If (select COUNT(*) from Client where Client.EmailId = 'emailId') &lt;=0 THEN
+		
+		If (select COUNT(*) from ClientToken where ClientToken.AccessToken = accessToken)&lt;=0 THEN
+				
+						INSERT into Client(MarketName, EmailId) values (name,emailId);
+						INSERT into ClientToken(ClientID,AI, AccessToken, COPEToken , Username , Password)
+						values (Last_Insert_ID(),AI, accessToken, UUID() , username , password);
+
+						Select COPEToken from ClientToken where ClientToken.AccessToken = accessToken;
+
+			
+				ELSE
+				
+						SELECT Error, `Code` from ErrorCode where Code = 1002;
+				END IF;
+
+   			
+ELSE
+
+			SELECT Error, `Code` from ErrorCode where Code = 1001;
+END IF;
+
+
+END</string>
+		<string>select COUNT(*) from Client where Client.EmailId = 'mu1@mu.com'</string>
+		<string>CREATE PROCEDURE RegisterClient(`name` varchar(255), `emailId` VARCHAR(255),AI CHAR(5), `accessToken` char(255), `username` Varchar(255), `password` varchar(255))
+
+BEGIN
+select emailId;
+If (select COUNT(*) from Client where Client.EmailId = emailId) &lt;=0 THEN
+		
+		If (select COUNT(*) from ClientToken where ClientToken.AccessToken = accessToken)&lt;=0 THEN
+				
+						INSERT into Client(MarketName, EmailId) values (name,emailId);
+						INSERT into ClientToken(ClientID,AI, AccessToken, COPEToken , Username , Password)
+						values (Last_Insert_ID(),AI, accessToken, UUID() , username , password);
+
+						Select COPEToken from ClientToken where ClientToken.AccessToken = accessToken;
+
+			
+				ELSE
+				
+						SELECT Error, `Code` from ErrorCode where Code = 1002;
+				END IF;
+
+   			
+ELSE
+
+			SELECT Error, `Code` from ErrorCode where Code = 1001;
+END IF;
+
+
+END</string>
+		<string>select COUNT(*) from Client where Client.EmailId = 'ah'</string>
+		<string>select COUNT(*) from Client where Client.EmailId == 'ah'</string>
+		<string>select COUNT(*) from Client where Client.EmailId == `ah`</string>
+		<string>select COUNT(*) from Client where Client.EmailId = `ah`</string>
+		<string>select COUNT(*) from Client where Client.EmailId = emailId</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>5.7.13</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
