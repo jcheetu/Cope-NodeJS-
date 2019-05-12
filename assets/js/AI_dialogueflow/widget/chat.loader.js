@@ -29,6 +29,7 @@ else{
 }
 
 document.write("<link rel='stylesheet' type='text/css' href='http://localhost:1337/css/font-awesome.min.css' />");
+document.write("<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>");
 
 
 

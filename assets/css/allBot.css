@@ -795,7 +795,7 @@ background-color: #1F8CEB;
 
 /* General */
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto';
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
@@ -845,7 +845,7 @@ a:focus {
   padding: 6px 12px !important;
   font-size: 14px;
   outline: none;
-  font-family: 'Open Sans', sans-serif !important;
+  font-family: 'Roboto' !important;
   background-color: #4a90e2 !important;
   color: #ffffff;
 }
@@ -893,8 +893,8 @@ a:focus {
 /* MyBot */
 copebot .chat-div {
   position: fixed;
-  /* width: 365px;
-  min-height: 250px;
+  width: 100%;
+  /* min-height: 250px;
   max-height: 440px;
   height: 475px;
   bottom: 65px;
