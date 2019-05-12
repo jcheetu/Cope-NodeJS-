@@ -78,5 +78,22 @@ DROP TABLE IF EXISTS Logger
 CREATE TABLE Logger(
    LogID BIGINT AUTO_INCREMENT PRIMARY KEY,
    Request Varchar(255),
-   LogType CHAR(5)
+   LogType CHAR(5),
+   CreatedOn datetime DEFAULT CURRENT_TIMESTAMP
 );
+
+
+DELIMITER $$
+
+CREATE PROCEDURE RegisterClient(`name` varchar(255), `emailId` VARCHAR(255),AI CHAR(5), `accessToken` char(255), `username` Varchar(255), `password` varchar(255))
+BEGIN
+
+INSERT into Client(MarketName, EmailId)
+values (name,emailId);
+
+
+INSERT into ClientToken(ClientID,AI, AccessToken, COPEToken , Username , Password)
+values (Last_Insert_ID(),AI, accessToken, UUID() , username , password);
+
+Select COPEToken from ClientToken where ClientToken.AccessToken = `accessToken`;
+ END $$

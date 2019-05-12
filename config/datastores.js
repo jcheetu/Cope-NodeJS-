@@ -57,11 +57,11 @@ module.exports.datastores = {
   //   // url: 'mysql://user:password@host:port/database',
 
   // },
-  // db_mysql: {
-  //   adapter: require('sails-mysql'),
-  //   url: 'mysql://root:welcome@localhost:3306/COPE',
-  // }
-  //,
+  db_mysql: {
+    adapter: require('sails-mysql'),
+    url: 'mysql://root:welcome@localhost:3306/COPE',
+  }
+  // ,
 
   // db_mongo: {
   //   adapter: require('sails-mongo'),

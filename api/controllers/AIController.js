@@ -7,7 +7,7 @@ module.exports = {
     // }
     sendRequest: function(req, res) {
       let data = req.allParams();
-     // LoggerService.logActivity(reqData);
+      LoggerService.logActivity(JSON.stringify(data));
       AIService.sendRequest(data, function(output) {
         return res.send(output);
       });

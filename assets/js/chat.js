@@ -7,7 +7,9 @@
             baseUrl : "",
             accessToken : "",
 			chatbotTitle : "",
-			initialMessage : ""
+			initialMessage : "",
+			username : "",
+			password :""
         }, options );
         
     
@@ -152,6 +154,10 @@
 			"accessToken" : settings.accessToken,
 			"ai" : settings.ai
 		};
+		if(settings.ai == "watson"){
+			data.username = settings.username;
+			data.password = settings.password;
+		}
 		$.ajax({
 			type: "POST",
 			url: "/AI/sendrequest",

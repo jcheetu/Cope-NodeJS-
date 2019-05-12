@@ -39,6 +39,7 @@ module.exports.routes = {
 
   "GET /user": "UserController.getUser",
   "GET /client": "ClientController.getClient",
+  "POST /client/register" : "ClientController.registerWidgetClient",
 
   "POST /customerSupportUser/create": "CustomerSupportUserController.create",
   "GET /customerSupportUser/:customerSupportId/:clientID": "CustomerSupportUserController.getUser",
