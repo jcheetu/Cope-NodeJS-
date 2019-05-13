@@ -793,7 +793,7 @@ background-color: #1F8CEB;
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800|Satisfy);
 
 
-/* General */
+/* /* General */
 body {
   font-family: 'Roboto';
   font-size: 14px;
@@ -893,13 +893,14 @@ a:focus {
 /* MyBot */
 copebot .chat-div {
   position: fixed;
-  width: 100%;
-  /* min-height: 250px;
+  width: 365px;
+  min-height: 250px;
   max-height: 440px;
   height: 475px;
+  /*border: 1px solid #dcdcdc;*/
   bottom: 65px;
-  right: 5px; */
-  padding: 19px 22px 6px 28px;
+  right: 5px;
+  padding: 65px 22px 6px 28px;
   overflow-y: auto;
   background: #ffffff repeat;
   border-top-left-radius: 3px;

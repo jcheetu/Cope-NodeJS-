@@ -3,19 +3,18 @@ module.exports = {
         return sails.getDatastore("db_mysql");
     },
     
-    authoriseAccessToken: async function (reqData) {
-        console.log("authoriseAccessToken" + JSON.stringify(reqData.allParams()));
+    authoriseAccessToken: function (reqData, callback) {
        // var query = "Select * from clientToken where COPEToken=" + reqData.accessToken;
        var query = "Select * from clientToken where accessToken='" + reqData.allParams().accessToken+"'";
        this.DBStore_MySql().sendNativeQuery(query).exec(function (err, nativeResult) {
-           console.log(query + " "+ JSON.stringify(nativeResult.rows));
             if (err) {
                 LoggerService.logError(err);
              }
-            if(nativeResult.rows.count == 0){
-              return false; 
+             console.log(nativeResult.rows.length);
+            if(nativeResult.rows.length == 0){
+              callback(false); 
             }
-              return true;
+              callback(true);
         });
 
     }

@@ -19,6 +19,6 @@ module.exports.policies = {
 
   // '*': true,
 
-  'AI/sendrequest' : 'isAccessTokenRegistered'
+  //'AI/sendrequest' : 'isAccessTokenRegistered'
 
 };

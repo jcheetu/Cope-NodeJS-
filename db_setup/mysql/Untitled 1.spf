@@ -126,6 +126,7 @@ call RegisterClient('mu','mu@mu.com','DF', 'eec1d68cdfa148edb700e7bbfc58b6c0x','
 	<array/>
 	<key>queryHistory</key>
 	<array>
+		<string>call RegisterClient('mu','j@j.comf','WATS', '5f75e432-1a47-4692-969a-7a077022af31','apikey','WJj49CLvNodsDH5XMAKj-UODYV8Yw7Db22hDzIWYeQuk')</string>
 		<string>call RegisterClient('mu','mu@mu.com','DF', 'eec1d68cdfa148edb700e7bbfc58b6c0x','','')</string>
 		<string>Truncate Client;
 Truncate ClientToken</string>
@@ -264,7 +265,6 @@ END</string>
 		<string>select COUNT(*) from Client where Client.EmailId == 'ah'</string>
 		<string>select COUNT(*) from Client where Client.EmailId == `ah`</string>
 		<string>select COUNT(*) from Client where Client.EmailId = `ah`</string>
-		<string>select COUNT(*) from Client where Client.EmailId = emailId</string>
 	</array>
 	<key>rdbms_type</key>
 	<string>mysql</string>

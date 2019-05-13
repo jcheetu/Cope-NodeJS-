@@ -178,7 +178,7 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
 		
 		$.ajax({
 			type: "POST",
-			url: "/AI/sendrequest",
+			url: "http://localhost:1337/AI/sendrequest",
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
