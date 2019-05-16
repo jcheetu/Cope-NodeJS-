@@ -55,12 +55,23 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
 
 			copebot+='<div id="response-container" class="resultDiv"></div>'+
 			'<div class="loader-div" id="chat-div">'+
-				'<div class="loader">'+
-					'<div class="dot1"></div>'+
-					'<div class="dot2"></div>'+
-					'<div class="dot1"></div>'+
-				'</div>'+
-			'</div>'+
+			 	'<div class="loader">'+
+			// 		'<div class="dot1"></div>'+
+			// 		'<div class="dot2"></div>'+
+			// 		'<div class="dot1"></div>'+
+			// 	'</div>'+
+			// '</div>'+
+			//'<div class="container">'+
+ // '<div class="loader-new">'+
+  '  <div class="loader-new--dot"></div>'+
+  '  <div class="loader-new--dot"></div>'+
+  '  <div class="loader-new--dot"></div>'+
+  '  <div class="loader-new--dot"></div>'+
+  '  <div class="loader-new--dot"></div>'+
+  '  <div class="loader-new--dot"></div>'+
+  '  <div class="loader-new--text"></div?'+
+  '</div>' +
+'</div>' +
         '</div>';
         
         $("copebot").html(copebot);
