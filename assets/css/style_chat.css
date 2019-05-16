@@ -234,7 +234,7 @@ background-color: #1F8CEB;
   overflow: hidden;
   height: 72px;
   width: 72px;
-  border-radius: 6px;
+  /* border-radius: 6px; */
   -webkit-transition: height .4s .1s, width  .4s .1s, box-shadow .3s;
   transition: height .4s .1s, width  .4s .1s, box-shadow .3s;
   -webkit-transition-timing-function: cubic-bezier(0.67, 0.17, 0.32, 0.95);
@@ -255,7 +255,7 @@ background-color: #1F8CEB;
 }
 .chat-box header {
   top: 0;
-  border-radius: 6px 6px 0 0;
+  /* border-radius: 6px 6px 0 0; */
   padding: 0 1.4em;
   height: 40px;
   line-height: 40px;
@@ -774,58 +774,3 @@ background-color: #1F8CEB;
   }
 }
 
-
-#meetuni_id .meetuniversity-team-profile-full-avatar {
-    display: inline-block;
-    padding-left: 10px;
-    padding-right: 10px;
-    vertical-align: top;
-    text-align: center;
-}
-
-#meetuni_id .meetuniversity-team-profile-full-avatar .meetuniversity-avatar img {
-    width: 50px;
-    height: 50px;
-}
-#meetuni_id .meetuniversity-avatar img {
-    border-radius: 50%;
-}
-
-#meetuni_id .meetuniversity-team-profile-office-hours .meetuni-expert-pics {
-    padding-top: 20px;
-}
-
-#meetuni_id .meetuni-expert-pics {
-    width: 100%;
-    text-align: center;
-    padding-bottom: 18px;
-    margin-top: 1em;
-}
-#meetuni_id .meetuniversity-team-profile-office-hours .meetuni-expert-pics {
-    padding-top: 20px;
-}
-
-#meetuni_id .meetuniversity-team-profile-office-hours .meetuniversity-team-profile-full-intro {
-    margin-bottom: 30px;
-}
-#meetuni_id .meetuniversity-team-profile-full-intro {
-    color: #444444;
-    font-size: 13px;
-    width: 240px;
-    text-align: center;
-    margin: 7px auto;
-    line-height: 1.4;
-}
-
-#meetuni_id .meetuniversity-team-profile-full-intro span {
-    word-break: break-word;
-}
-
-#meetuni_id .meetuniversity-emoji-sub-icon {
-    background-image: url(../img/misc/smiley.png);
-    background-size: 464px 464px;
-    background-repeat: no-repeat;
-    position: relative;
-    top: 2px;
-    margin: 1px;
-}

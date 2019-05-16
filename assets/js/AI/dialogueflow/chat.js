@@ -15,7 +15,7 @@
         var chat_container = '<div class="main-chat-container empty" ><a href="#0" class="chat-button" style="z-index: 999;position: fixed;"></a>'
         + '<div class="chat-box" style="z-index: 999">'
           +  '<div class="chat-window">'
-           + '<header style="box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.15);background: #1F8CEB;">'
+           + '<header style="box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.15);background: #e69c52;">'
                       +' <div style="color: #fff;font-size: 17px;line-height: 1.1em;'
                          +  'white-space: nowrap;text-align: center;margin: 9.5px auto;overflow: hidden;text-overflow: ellipsis;">'+ settings.chatbotTitle +'</div>'
                +' </header>'
@@ -24,7 +24,7 @@
                      
                   + '</div>'
                   + '<footer>'
-                   + '<input  type="text" id="chat-input" autocomplete="off" placeholder="Try typing here..." class="bot-form-control bot-txt"/>'
+                   + '<input  type="text" id="chat-input" autocomplete="off" placeholder="Send message" class="bot-form-control bot-txt"/>'
                + '</footer>'
             + '</div>'
             + '</div>'

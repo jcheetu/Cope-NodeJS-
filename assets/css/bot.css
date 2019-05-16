@@ -104,7 +104,7 @@ copebot .chat-div {
   width: 365px;
   min-height: 250px;
   max-height: 440px;
-  height: 475px;
+  height: 375px;
   /*border: 1px solid #dcdcdc;*/
   bottom: 65px;
   right: 5px;
@@ -181,7 +181,7 @@ copebot .bot-txt:focus {
 copebot .resultDiv .response-text {
   background: #F1F0F0;
   color: #000;
-  border-radius: 3px;
+   /* border-radius: 3px; */
   padding: 12px;
   font-size: 13px;
   font-weight: 400;
@@ -209,7 +209,7 @@ copebot .resultDiv .userEnteredText {
   background: #0085EF;
   float: right;
   color: #ffffff;
-  border-radius: 3px;
+   /* border-radius: 3px; */
   padding: 12px;
   font-size: 13px;
   font-weight: 400;
@@ -298,12 +298,12 @@ copebot .loader > div {
   margin-right: 5px;
 }
 
-copebot .loader .1dot {
+copebot .loader .dot1 {
   -webkit-animation-delay: -0.32s;
   animation-delay: -0.32s;
 }
 
-copebot .loader .2dot {
+copebot .loader .dot2 {
   -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
 }
@@ -329,7 +329,7 @@ copebot .loader .2dot {
 copebot .responseOption {
   background: #F1F0F0;
   color: #000;
-  border-radius: 3px;
+   /* border-radius: 3px; */
   padding: 12px;
   font-size: 13px;
   font-weight: 400;

@@ -14,16 +14,21 @@ module.exports = {
     //     collection.insert(reqData);    
     //  }
     logError: async function (reqData, errorData) {
-        var query = "insert into logger (Request, Logtype, Error) values ('"+JSON.stringify(reqData) + "','e',"+JSON.stringify(errorData)+")";
+        if(sails.config.custom.errorLogger){
+            var query = "insert into logger (Request, Logtype, Error) values ('"+JSON.stringify(reqData) + "','e',"+JSON.stringify(errorData)+")";
        
-        this.DBStore_MySql().sendNativeQuery(query).exec(function (err, nativeResult) {
-            if (err) {
-              ///  LoggerService.logError(err);
-             }
-          
-        });
+            this.DBStore_MySql().sendNativeQuery(query).exec(function (err, nativeResult) {
+                if (err) {
+                  ///  LoggerService.logError(err);
+                 }
+              
+            });
+        }
+       
      },
     logActivity: async function (reqData) {
+        if(sails.config.custom.activityLogger){
+        
         var query = "insert into logger (Request, Logtype) values ('"+JSON.stringify(reqData) + "','a')";
        
         this.DBStore_MySql().sendNativeQuery(query).exec(function (err, nativeResult) {
@@ -32,6 +37,7 @@ module.exports = {
              }
           
         });
+    }
 
     }
 }
