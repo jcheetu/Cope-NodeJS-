@@ -8,27 +8,44 @@
 //         access-token="eec1d68cdfa148edb700e7bbfc58b6c0">
 //         </div>
 //             <script
-//             src="http://localhost:1337/js/chat.loader.js"></script>
+//             src="url + '/js/chat.loader.js"></script>
  
 // </body>
 // </html>
 
+var PRODUCTION = {
+    url : ""
+}
+var DEVELOPMENT = {
+    url : "http://localhost:1337"
+
+}
+window.environment = DEVELOPMENT
+
+console.log(window.location.hostname);
+
+var url = window.environment.url;
 var JavaScriptCode = document.createElement("script");
 JavaScriptCode.setAttribute('type', 'text/javascript');
-JavaScriptCode.setAttribute("src", 'http://localhost:1337/js/AI/dialogueflow/widget/allchat.js');
+JavaScriptCode.setAttribute("src", url + '/js/AI/dialogueflow/widget/allchat.js');
 
+document.getElementById('generic-chat-container').appendChild(JavaScriptCode);
+
+JavaScriptCode = document.createElement("script");
+JavaScriptCode.setAttribute('type', 'text/javascript');
+JavaScriptCode.setAttribute("src", url + '/js/config/env.js');
 document.getElementById('generic-chat-container').appendChild(JavaScriptCode);
 
 CssCode = document.createElement("link");
 CssCode.setAttribute('rel', 'stylesheet');
 if(document.getElementById('generic-chat-container').getAttribute("custom-css")== undefined || document.getElementById('generic-chat-container').attr("custom-css")===null){
-    document.write("<link rel='stylesheet' type='text/css' href='http://localhost:1337/css/allBot.css' />");
+    document.write("<link rel='stylesheet' type='text/css' href='" + url + "/css/allBot.css' />");
 }
 else{
     document.write(document.getElementById('generic-chat-container').getAttribute("custom-css"));
 }
 
-document.write("<link rel='stylesheet' type='text/css' href='http://localhost:1337/css/font-awesome.min.css' />");
+//document.write("<link rel='stylesheet' type='text/css' href=url + '/css/font-awesome.min.css' />");
 document.write("<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>");
 
 

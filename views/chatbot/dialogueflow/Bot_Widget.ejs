@@ -7,8 +7,15 @@
         <div id="generic-chat-container" chatbot-title="Vishal" 
         access-token="eec1d68cdfa148edb700e7bbfc58b6c0">
         </div>
-            <script
-            src="http://localhost:1337/js/AI/dialogueFlow/widget/chat.loader.js"></script>
+            <!-- <script
+            src="url + '/js/AI/dialogueFlow/widget/chat.loader.js"></script> -->
  
 </body>
 </html>
+<script type="text/javascript">
+var url = window.environment.url;
+
+document.createElement("script");
+JavaScriptCode.setAttribute('type', 'text/javascript');
+JavaScriptCode.setAttribute("src", url + '/js/AI/dialogueFlow/widget/chat.loader.js');
+</script>
