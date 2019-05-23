@@ -15,7 +15,7 @@ module.exports = {
     //  }
     logError: async function (reqData, errorData) {
         if(sails.config.custom.errorLogger){
-            var query = "insert into logger (Request, Logtype, Error) values ('"+JSON.stringify(reqData) + "','e',"+JSON.stringify(errorData)+")";
+            var query = "insert into Logger (Request, Logtype, Error) values ('"+JSON.stringify(reqData) + "','e',"+JSON.stringify(errorData)+")";
        
             this.DBStore_MySql().sendNativeQuery(query).exec(function (err, nativeResult) {
                 if (err) {
@@ -29,11 +29,12 @@ module.exports = {
     logActivity: async function (reqData) {
         if(sails.config.custom.activityLogger){
         
-        var query = "insert into logger (Request, Logtype) values ('"+JSON.stringify(reqData) + "','a')";
+        var query = "insert into Logger (Request, Logtype) values ('"+JSON.stringify(reqData) + "','a')";
        
         this.DBStore_MySql().sendNativeQuery(query).exec(function (err, nativeResult) {
             if (err) {
-                //LoggerService.logError(err);
+                console.log(err);
+        
              }
           
         });

@@ -321,7 +321,7 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
 			$('<p class="responseOption response-opt_'+time+'"></p><div class="clearfix"></div>').appendTo('#response-container');
 			$('<div class="option-title">'+title+'</div>').appendTo('.response-opt_'+time);
 			// Loop through responseOptions
-			for(i=0;i<suggLength;i++) {
+			for(var i=0;i<suggLength;i++) {
 				$('<span class="option-val">'+responseOptions[i]+'</span>').appendTo('.response-opt_'+time);
 			}
 			scrollToBottomOfResults();
