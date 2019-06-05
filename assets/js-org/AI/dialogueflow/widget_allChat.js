@@ -17,6 +17,7 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
 
 
 // chat.js
+
 (function ( $ ) {
  
     $.fn.chat = function( options ) {
@@ -26,9 +27,7 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
             baseUrl : "",
             accessToken : "",
 			chatbotTitle : "",
-			initialMessage : "",
-			username : "",
-			password :""
+			initialMessage : ""
         }, options );
         
     
@@ -53,26 +52,26 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
         var copebot = '<div class="chat-div" id="chat-div">'+
 						'<!--chat-div end-->';
 
-			copebot+='<div id="response-container" class="resultDiv"></div>'+
-			'<div class="loader-div" id="chat-div">'+
-			 	'<div class="loader">'+
-			// 		'<div class="dot1"></div>'+
-			// 		'<div class="dot2"></div>'+
-			// 		'<div class="dot1"></div>'+
-			// 	'</div>'+
-			// '</div>'+
-			//'<div class="container">'+
- // '<div class="loader-new">'+
-  '  <div class="loader-new--dot"></div>'+
-  '  <div class="loader-new--dot"></div>'+
-  '  <div class="loader-new--dot"></div>'+
-  '  <div class="loader-new--dot"></div>'+
-  '  <div class="loader-new--dot"></div>'+
-  '  <div class="loader-new--dot"></div>'+
-  '  <div class="loader-new--text"></div?'+
-  '</div>' +
-'</div>' +
-        '</div>';
+						copebot+='<div id="response-container" class="resultDiv"></div>'+
+						'<div class="loader-div" id="chat-div">'+
+							 '<div class="loader">'+
+						// 		'<div class="dot1"></div>'+
+						// 		'<div class="dot2"></div>'+
+						// 		'<div class="dot1"></div>'+
+						// 	'</div>'+
+						// '</div>'+
+						//'<div class="container">'+
+			 // '<div class="loader-new">'+
+			  '  <div class="loader-new--dot"></div>'+
+			  '  <div class="loader-new--dot"></div>'+
+			  '  <div class="loader-new--dot"></div>'+
+			  '  <div class="loader-new--dot"></div>'+
+			  '  <div class="loader-new--dot"></div>'+
+			  '  <div class="loader-new--dot"></div>'+
+			  '  <div class="loader-new--text"></div?'+
+			  '</div>' +
+			'</div>' +
+					'</div>';
         
         $("copebot").html(copebot);
         
@@ -115,8 +114,8 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
                     $(".chat-box").css("margin-bottom", "70px").fadeIn("slow");
 					cartWrapper.addClass('chat-open');
 					mysession=session(true);
-                    send(settings.initialMessage);
-                 }
+	
+send(settings.initialMessage)                 }
         }
 
         var session = function(param) {
@@ -174,81 +173,75 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
 
 	//------------------------------------------- Send request to API.AI ---------------------------------------
 	function send(text) {
-			//console.log(baseUrl);
-		// if(text==settings.initialMessage){
-		// 	mysession=session(true);
-		// }
-		var data = {
-			"text": text,
-			"sessionId": mysession,
-			"accessToken" : settings.accessToken,
-			"ai" : settings.ai
-		};
-		data.username = settings.username;
-		data.password = settings.password;
+		//console.log(baseUrl);
+	// if(text=='Hi'){
+	// 	mysession=session(true);
+	// }
+	var data = {
+		"text": text,
+		"sessionId": mysession,
+		"accessToken" : settings.accessToken,
+		"ai" : settings.ai,
+	};
+	
+	$.ajax({
+		type: "POST",
+		url: url + "/AI/sendrequest",
+		data: JSON.stringify(data),
+		contentType: "application/json; charset=utf-8",
+		dataType: "json",
+		headers: {
+			"Authorization": "Bearer " + settings.accessToken
+		},
 		
-		$.ajax({
-			type: "POST",
-			url: url + "/AI/sendrequest",
-			data: JSON.stringify(data),
-			contentType: "application/json; charset=utf-8",
-			dataType: "json",
-			headers: {
-				"Authorization": "Bearer " + settings.accessToken
-			},
-			// data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
-			success: function(data) {
-                                //console.log("data");
-								//console.log("results test");
-								$("#chat-input").prop('disabled', false);
-								               
-				main(data);
-				//console.log(data);				
-			},
-			error: function(e) {
-				//console.log (e);
-			}
-		});
-    }
+		// data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
+		success: function(data) {
+							//console.log("data");
+							//console.log("results test");
+							$("#chat-input").prop('disabled', false);
+										   
+			main(data);
+			//console.log(data);				
+		},
+		error: function(e) {
+			//console.log (e);
+		}
+	});
+}
+
     function main(data) {
-		if(data.context.system.branch_exited_reason == "completed"){
-			for(var i = 0; i < data.output.text.length; i++){
-				setBotResponse(data.output.text[i]);
-		
+		var action = data.result.action;
+		//console.log(data);
+		var messagesData = data.result.fulfillment.data;
+		var messagesJson = data.result.fulfillment.messages;
+		// use incomplete if u use required in api.ai questions in intent
+		// check if actionIncomplete = false
+
+		var incomplete = data.result.actionIncomplete;
+		if (incomplete) {
+			setBotResponse(data.result.fulfillment.speech);
+		}else if(messagesJson) { // check if messages are there
+			var time = 500
+			for(var i = 0; i < messagesJson.length; i++){
+				if(messagesJson[i].platform == "facebook") {
+					if(messagesJson[i].speech){
+						setBotResponse(messagesJson[i].speech, time);
+					}else if(messagesJson[i].title){
+                        addSuggestion(messagesJson[i], time);
+						
+					}
+					else if(messagesJson[i].imageUrl){
+						addImage(messagesJson[i].imageUrl, time);
+					}
+					time += time;
+				} else if(messagesJson[i].platform != 'facebook' && messagesJson[i].platform != 'skype' && action !='send_mail') {
+					setBotResponse(data.result.fulfillment.speech);
+				}
+			}
+			if(action == 'verify_user_demo' && messagesJson.length == 0 && messagesData.fb.title!=undefined){
+								 send(messagesData.fb.title);
 			}
 		}
-		// var action = data.result.action;
-		// //console.log(data);
-		// var messagesData = data.result.fulfillment.data;
-		// var messagesJson = data.result.fulfillment.messages;
-		// // use incomplete if u use required in api.ai questions in intent
-		// // check if actionIncomplete = false
-
-		// var incomplete = data.result.actionIncomplete;
-		// if (incomplete) {
-		// 	setBotResponse(data.result.fulfillment.speech);
-		// }else if(messagesJson) { // check if messages are there
-		// 	var time = 500
-		// 	for(var i = 0; i < messagesJson.length; i++){
-		// 		if(messagesJson[i].platform == "facebook") {
-		// 			if(messagesJson[i].speech){
-		// 				setBotResponse(messagesJson[i].speech, time);
-		// 			}else if(messagesJson[i].title){
-        //                 addSuggestion(messagesJson[i], time);
-						
-		// 			}
-		// 			else if(messagesJson[i].imageUrl){
-		// 				addImage(messagesJson[i].imageUrl, time);
-		// 			}
-		// 			time += time;
-		// 		} else if(messagesJson[i].platform != 'facebook' && messagesJson[i].platform != 'skype' && action !='send_mail') {
-		// 			setBotResponse(data.result.fulfillment.speech);
-		// 		}
-		// 	}
-		// 	if(action == 'verify_user_demo' && messagesJson.length == 0 && messagesData.fb.title!=undefined){
-		// 						 send(messagesData.fb.title);
-		// 	}
-		// }
     }
     
     //------------------------------------ Set bot response in response-container -------------------------------------

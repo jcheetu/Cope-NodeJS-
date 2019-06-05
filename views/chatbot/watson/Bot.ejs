@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="/css/style_chat.css" />
 
 <link rel="stylesheet" href="/css/bot.css" />
-<script type="text/javascript" src="/js/AI/watson/chat.js"></script>
+<script type="text/javascript" src="/js-org/AI/watson/chat.js"></script>
     <link rel= "stylesheet" src="/css/chat.css"></link>
 
     <script type="text/javascript"> 
@@ -43,7 +43,7 @@
 
                 }var qsJsonObject = {};
                 if (queryStringKeyValue != '') {
-                    for (i = 0; i < queryStringKeyValue.length; i++) {
+                    for (var i = 0; i < queryStringKeyValue.length; i++) {
                         qsJsonObject[queryStringKeyValue[i].split('=')[0]] = queryStringKeyValue[i].split('=')[1];
                     }
                 }

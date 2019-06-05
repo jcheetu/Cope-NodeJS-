@@ -84,6 +84,7 @@
                     $('#chatbot_frame').height("500px"); 
                     $(".chat-box").css("margin-bottom", "70px").fadeIn("slow");
 					cartWrapper.addClass('chat-open');
+					context = {}
 					mysession=session(true);
                     send(settings.initialMessage);
                  }
@@ -141,18 +142,20 @@
 		}
 	});
 
-
+	var context = {};
 	//------------------------------------------- Send request to API.AI ---------------------------------------
 	function send(text) {
 			//console.log(baseUrl);
 		// if(text==settings.initialMessage){
 		// 	mysession=session(true);
 		// }
+
 		var data = {
 			"text": text,
 			"sessionId": mysession,
 			"accessToken" : settings.accessToken,
-			"ai" : settings.ai
+			"ai" : settings.ai,
+			"context" : context
 		};
 		data.username = settings.username;
 		data.password = settings.password;
@@ -168,10 +171,9 @@
 			},
 			// data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
 			success: function(data) {
-                                //console.log("data");
-								//console.log("results test");
-								$("#chat-input").prop('disabled', false);
-								               
+                         
+				$("#chat-input").prop('disabled', false);
+				context = data.context;	               
 				main(data);
 				//console.log(data);				
 			},
@@ -181,12 +183,20 @@
 		});
     }
     function main(data) {
-		if(data.context.system.branch_exited_reason == "completed"){
-			for(var i = 0; i < data.output.text.length; i++){
-				setBotResponse(data.output.text[i]);
-		
+		for(var i = 0; i < data.output.generic.length; i++){
+			if(data.output.generic[i].response_type == "option"){
+				var messagesJson = {
+					title : data.output.generic[i].title,
+					replies : data.output.generic[i].options
+				}
+				addSuggestion(messagesJson);0
 			}
+			if(data.output.generic[i].response_type == "text"){
+				setBotResponse(data.output.generic[i].text);
+			}
+			
 		}
+		
 		// var action = data.result.action;
 		// //console.log(data);
 		// var messagesData = data.result.fulfillment.data;
@@ -227,9 +237,9 @@
 		setTimeout(function(){
 			showSpinner();
 			if($.trim(val) == '') {
-				val = 'I couldn\'t get that. Let\' try something else!'
-				var BotResponse = '<p class="response-text">'+val+'</p><div class="clearfix"></div>';
-				$(BotResponse).appendTo('#response-container');
+				// val = 'I couldn\'t get that. Let\' try something else!'
+				// var BotResponse = '<p class="response-text">'+val+'</p><div class="clearfix"></div>';
+				// $(BotResponse).appendTo('#response-container');
 			} else {
 				val = val.replace(new RegExp('\r?\n','g'), '<br />');
 				var BotResponse = '<p class="response-text">'+val+'</p><div class="clearfix"></div>';
@@ -291,8 +301,8 @@
 			$('<p class="responseOption response-opt_'+time+'"></p><div class="clearfix"></div>').appendTo('#response-container');
 			$('<div class="option-title">'+title+'</div>').appendTo('.response-opt_'+time);
 			// Loop through responseOptions
-			for(i=0;i<suggLength;i++) {
-				$('<span class="option-val">'+responseOptions[i]+'</span>').appendTo('.response-opt_'+time);
+			for(var i=0;i<suggLength;i++) {
+				$('<span class="option-val">'+responseOptions[i].label+'</span>').appendTo('.response-opt_'+time);
 			}
 			scrollToBottomOfResults();
 			$("#chat-input").prop('disabled', true);

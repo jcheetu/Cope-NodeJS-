@@ -1,4 +1,4 @@
-var AssistantV1 = require('watson-developer-cloud/assistant/v1');
+var AssistantV1 = require('ibm-watson/assistant/v1');
 
 module.exports  =   {
 
@@ -8,14 +8,16 @@ module.exports  =   {
             username: reqObj.username,
             password: reqObj.password,
             url: 'https://gateway.watsonplatform.net/assistant/api/',
-            version: '2018-02-16'
+            version: '2019-02-01'
         }); 
     
           assistant.message(
             {
                   input: { text: reqObj.text },
                   workspace_id: reqObj.accessToken,
-                  session_id : reqObj.sessionId
+                  session_id : reqObj.sessionId,
+                  context : reqObj.context
+       
             },
             function(err, response) {
               if (err) {
