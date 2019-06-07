@@ -168,6 +168,7 @@ module.exports = {
   *                                                                          *
   ***************************************************************************/
   session: {
+    secret: 'copesamples-keyword' 
 
     /***************************************************************************
     *                                                                          *
@@ -220,10 +221,10 @@ module.exports = {
     * https://sailsjs.com/config/session#?the-session-id-cookie                *
     *                                                                          *
     ***************************************************************************/
-    cookie: {
-      // secure: true,
-      maxAge: 24 * 60 * 60 * 1000,  // 24 hours
-    }
+    // cookie: {
+    //   // secure: true,
+    //   maxAge: 24 * 60 * 60 * 1000,  // 24 hours
+    // }
     
   },
 
