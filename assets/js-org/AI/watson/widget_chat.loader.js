@@ -13,7 +13,7 @@
 // </body>
 // </html>
 var PRODUCTION = {
-    url : ""
+    url : "https://copebots.herokuapp.com"
 }
 var DEVELOPMENT = {
     url : "http://localhost:1337"
