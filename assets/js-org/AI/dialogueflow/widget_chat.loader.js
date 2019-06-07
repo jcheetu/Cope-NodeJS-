@@ -27,7 +27,7 @@ console.log(window.location.hostname);
 var url = window.environment.url;
 var JavaScriptCode = document.createElement("script");
 JavaScriptCode.setAttribute('type', 'text/javascript');
-JavaScriptCode.setAttribute("src", url + '/js-org/AI/dialogueflow/widget_allchat.js');
+JavaScriptCode.setAttribute("src", url + '/js-org/AI/dialogueflow/widget_allChat.js');
 
 document.getElementById('generic-chat-container').appendChild(JavaScriptCode);
 

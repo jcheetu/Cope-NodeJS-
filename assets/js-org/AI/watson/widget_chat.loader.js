@@ -23,7 +23,7 @@ window.environment = DEVELOPMENT
 var url = window.environment.url;
 var JavaScriptCode = document.createElement("script");
 JavaScriptCode.setAttribute('type', 'text/javascript');
-JavaScriptCode.setAttribute("src", url + '/js-org/AI/watson/widget_allchat.js');
+JavaScriptCode.setAttribute("src", url + '/js-org/AI/watson/widget_allChat.js');
 
 document.getElementById('generic-chat-container').appendChild(JavaScriptCode);
 
