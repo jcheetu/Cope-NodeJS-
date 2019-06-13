@@ -74,12 +74,12 @@ CREATE TABLE Currency(
    CurrencyCode CHAR(5)
 );
 
-DROP TABLE IF EXISTS Logger
+DROP TABLE IF EXISTS Logger;
 CREATE TABLE Logger(
    LogID BIGINT AUTO_INCREMENT PRIMARY KEY,
-   Request Varchar(255),
+   Request TEXT,
    LogType CHAR(5),
-   CreatedOn datetime DEFAULT CURRENT_TIMESTAMP
+   CreatedOn TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 
