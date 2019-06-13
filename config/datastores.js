@@ -61,7 +61,8 @@ module.exports.datastores = {
     adapter: require('sails-mysql'),
      // url: 'mysql://root:welcome@localhost:3306/COPE',
      //url : 'mysql:/copebots_widget:welcome@vs@69.164.198.214/copebots_widget'
-     url : 'mysql://copebots:Ho3b7j0Wk7@69.164.198.214/copebots_widget'
+    // url : 'mysql://copebots:Ho3b7j0Wk7@69.164.198.214/copebots_widget'
+    url : 'mysql://sql12295195:4vmVd81RiE@sql12.freemysqlhosting.net:3306/sql12295195'
   }
   // ,
 
