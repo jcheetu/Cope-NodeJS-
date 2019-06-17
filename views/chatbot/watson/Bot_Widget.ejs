@@ -2,21 +2,34 @@
 <html>
   <head>
     <title></title>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link srel="stylesheet" href="/css/cope-web.css"></link>
+ 
   </head>
   <body>
-        <div id="generic-chat-container" chatbot-title="Vishal" 
-        access-token="5f75e432-1a47-4692-969a-7a077022af31" username="apikey" password="WJj49CLvNodsDH5XMAKj-UODYV8Yw7Db22hDzIWYeQuk" initialMessage="Hi">
-        </div>
-            <!-- <script
-            src="http://localhost:1337/js/AI/watson/widget/chat.loader.js"></script> -->
- 
-</body>
-</html>
+      <div class="default-page">
+          <div class="header">
+            <h1 id="main-title" class="container">Watson Widget</h1>
+            <h3 class="container"> Click on Chat icon for sample. </h3>
 
-<script type="text/javascript">
-  var url = window.environment.url;
+           
+          </div>
+          <div class="main container clearfix">
+              <code>
+                  &lt;div id="generic-chat-container" chatbot-title="Watson Demo Bot" 
+                access-token="" username="" password=""&gt;
+                &lt;/div&gt;
+                &lt;script
+                    src="https://copebots.herokuapp.com/js/AI/watson/widget_chat.loader.js"&gt;&lt;/script&gt;
+              </code>
+          </div>
+        </div>
   
-  document.createElement("script");
-  JavaScriptCode.setAttribute('type', 'text/javascript');
-  JavaScriptCode.setAttribute("src", url + '/js/AI/watson/widget_chat.loader.js');
-  </script>
+
+            <div id="generic-chat-container" chatbot-title="Watson Demo Bot" 
+            access-token="5f75e432-1a47-4692-969a-7a077022af31" username="apikey" password="WJj49CLvNodsDH5XMAKj-UODYV8Yw7Db22hDzIWYeQuk">
+            </div>
+                <script
+                src="https://copebots.herokuapp.com/js/AI/watson/widget_chat.loader.js"></script>
+     </body>
+</html>

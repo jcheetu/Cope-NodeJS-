@@ -68,6 +68,9 @@ module.exports.routes = {
    // Widget
   "GET /loadbotwidget/dilogueflow": function(req, res) {
     return res.view('chatbot/dialogueflow/Bot_Widget.ejs');
+  },
+  "GET /loadbotwidget/watson": function(req, res) {
+    return res.view('chatbot/watson/Bot_Widget.ejs');
   }
 
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
